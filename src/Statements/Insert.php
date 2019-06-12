@@ -12,21 +12,27 @@ trait Insert
 {
 
   /**
+   * @param string $table
+   * @param mixed $columns
+   * @param mixed $values
+   *
    * @return QueryBuilder
    */
-  public static function insert(string $table)
+  public static function insert(string $table, $columns, $values = null)
   {
-    // return new self('INSERT INTO '.$table.' ('..')');
+    return is_array($columns)
+      ? new self('INSERT INTO '.$table.' ('.implode(',', $columns).') ')
+      : new self('INSERT INTO '.$table.' ('.$columns.') ');
   }
 
   /**
+   * @param mixed $values
+   *
    * @return QueryBuilder
    */
-  public function value($values)
+  public function values($values)
   {
-    // $this->query .= is_array($values)
-    //   ? 'VALUES ('.implode(', ', $values).') '
-    //   : 'VALUES ('.$values.') ';
+    $this->query .= 'VALUES ('.$this->raw($values).') ';
 
     return $this;
   }

@@ -12,6 +12,8 @@ trait Where
 {
 
   /**
+   * @param mixed $where
+   *
    * @return QueryBuilder
    */
   public function where($where)

@@ -12,6 +12,8 @@ trait Select
 {
 
   /**
+   * @param mixed $columns
+   *
    * @return QueryBuilder
    */
   public static function select($columns)

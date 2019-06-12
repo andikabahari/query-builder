@@ -1,3 +1,4 @@
 vendor/*
 examples/*
 src/QueryBuilderInterface.php
+index.php

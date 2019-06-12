@@ -11,7 +11,11 @@ namespace QueryBuilder\Query;
 trait Query
 {
 
-  public static function query($query)
+  /**
+   * @param string $query
+   *
+   * @return QueryBuilder
+   */
   {
     return is_array($query)
       ? new self(implode('; ', $query).' ')

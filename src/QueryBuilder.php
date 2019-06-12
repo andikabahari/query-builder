@@ -6,8 +6,8 @@ use QueryBuilder\Query\Query;
 
 use QueryBuilder\Statements\Select;
 use QueryBuilder\Statements\Insert;
-// use QueryBuilder\Statements\Update;
-// use QueryBuilder\Statements\Delete;
+use QueryBuilder\Statements\Update;
+use QueryBuilder\Statements\Delete;
 
 use QueryBuilder\Clauses\From;
 use QueryBuilder\Clauses\Where;
@@ -21,13 +21,15 @@ use QueryBuilder\Clauses\Where;
  * @author Andika Bahari
  * @license MIT License
  */
-class QueryBuilder
+class QueryBuilder extends AbstractQueryBuilder
 {
 
   use Query;
 
   use Select,
-      Insert;
+      Insert,
+      Update,
+      Delete;
 
   use From,
       Where;
@@ -47,6 +49,6 @@ class QueryBuilder
    */
   public function finish(): string
   {
-    return $this->query.';';
+    return trim($this->query, ' ').';';
   }
 }

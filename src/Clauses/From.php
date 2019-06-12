@@ -12,9 +12,11 @@ trait From
 {
 
   /**
+   * @param string $table
+   *
    * @return QueryBuilder
    */
-  public function from($table)
+  public function from(string $table)
   {
     $this->query .= 'FROM '.$table.' ';
 

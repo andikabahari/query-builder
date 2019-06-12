@@ -16,6 +16,6 @@ trait Update
    */
   public static function update($columns)
   {
-    
+
   }
 }
