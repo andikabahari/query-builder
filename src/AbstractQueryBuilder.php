@@ -5,7 +5,7 @@ namespace QueryBuilder;
 /**
  * AbstractQueryBuilder Class
  *
- * @author Andika Bahari (https://github.com/andikabahari)
+ * @author Andika Bahari
  * @license MIT License
  */
 abstract class AbstractQueryBuilder
