@@ -18,8 +18,11 @@ trait Insert
    *
    * @return QueryBuilder
    */
-  public static function insert(string $table, $columns, $values = null)
+  public static function insert(string $table, $columns)
   {
+    $keys   = array_keys($columns);
+    $values = array_values($columns);
+
     return is_array($columns)
       ? new self('INSERT INTO '.$table.' ('.implode(',', $columns).') ')
       : new self('INSERT INTO '.$table.' ('.$columns.') ');
