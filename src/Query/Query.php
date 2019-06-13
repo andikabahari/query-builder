@@ -12,11 +12,11 @@ trait Query
 {
 
   /**
-   * @param string $query
+   * @param mixed $query
    *
    * @return QueryBuilder
    */
-  public function query(string $query)
+  public function query($query)
   {
     return is_array($query)
       ? new self(implode('; ', $query).' ')
