@@ -16,7 +16,7 @@ trait Query
    *
    * @return QueryBuilder
    */
-  public function query($query)
+  public static function query($query)
   {
     return is_array($query)
       ? new self(implode('; ', $query).' ')

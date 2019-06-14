@@ -3,6 +3,7 @@
 namespace QueryBuilder;
 
 use QueryBuilder\Query\Query;
+use QueryBuilder\Query\Raw;
 
 use QueryBuilder\Statements\Select;
 use QueryBuilder\Statements\Insert;
@@ -11,9 +12,8 @@ use QueryBuilder\Statements\Delete;
 
 use QueryBuilder\Clauses\From;
 use QueryBuilder\Clauses\Where;
-// use QueryBuilder\Clauses\OrderBy;
-// use QueryBuilder\Clauses\Like;
-// use QueryBuilder\Clauses\Limit;
+use QueryBuilder\Clauses\OrderBy;
+use QueryBuilder\Clauses\Limit;
 
 /**
  * QueryBuilder Class
@@ -24,7 +24,8 @@ use QueryBuilder\Clauses\Where;
 class QueryBuilder extends AbstractQueryBuilder
 {
 
-  use Query;
+  use Query,
+      Raw;
 
   use Select,
       Insert,
@@ -32,13 +33,18 @@ class QueryBuilder extends AbstractQueryBuilder
       Delete;
 
   use From,
-      Where;
+      Where,
+      OrderBy,
+      Limit;
 
   /**
    * @var string
    */
   public $query;
 
+  /**
+   * @param string $query
+   */
   public function __construct(string $query)
   {
     $this->query = $query;

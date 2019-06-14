@@ -17,8 +17,13 @@ trait Insert
    *
    * @return QueryBuilder
    */
-  public static function insert(string $table, $columns)
+  public static function insert(string $table, $columns = null)
   {
+    if (is_null($columns))
+    {
+      return new self('INSERT INTO '.$table.' ');
+    }
+
     if (is_string($columns))
     {
       return new self('INSERT INTO '.$table.' ('.$columns.') ');
@@ -33,7 +38,7 @@ trait Insert
       : null;
 
     return is_array($keys)
-      ? new self('INSERT INTO '.$table.' ('.implode(',', $keys).') VALUES ('.self::raw($values).') ')
+      ? new self('INSERT INTO '.$table.' ('.implode(',', $keys).') VALUES ('.self::quote($values).') ')
       : new self('INSERT INTO '.$table.' ('.implode(',', $columns).') ');
   }
 
@@ -44,7 +49,7 @@ trait Insert
    */
   public function values($values)
   {
-    $this->query .= 'VALUES ('.$this->raw($values).') ';
+    $this->query .= 'VALUES ('.$this->quote($values).') ';
 
     return $this;
   }

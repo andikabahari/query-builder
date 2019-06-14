@@ -1,5 +1,8 @@
 {
-    "autoload": {
-        "psr-4": {"QueryBuilder\\": "src/"}
-    }
+  "name": "andikabahari/query-builder",
+  "description": "Make your SQL query with OOP style",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {"QueryBuilder\\": "src/"}
+  }
 }

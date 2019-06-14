@@ -12,15 +12,15 @@ trait Where
 {
 
   /**
-   * @param mixed $where
+   * @param mixed $condition
    *
    * @return QueryBuilder
    */
-  public function where($where)
+  public function where($condition)
   {
-    $this->query .= is_array($where)
-      ? 'WHERE '.key($where).'='.$where[key($where)].' '
-      : 'WHERE '.$where.' ';
+    $this->query .= is_array($condition)
+      ? 'WHERE '.$this->concat([key($condition) => $condition[key($condition)]]).' '
+      : 'WHERE '.$condition.' ';
 
     return $this;
   }

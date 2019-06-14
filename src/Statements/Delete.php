@@ -12,10 +12,12 @@ trait Delete
 {
 
   /**
+   * @param string $table
+   *
    * @return QueryBuilder
    */
-  public static function delete($column)
+  public static function delete(string $table)
   {
-
+    return new self('DELETE FROM '.$table.' ');
   }
 }

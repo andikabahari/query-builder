@@ -16,7 +16,7 @@ abstract class AbstractQueryBuilder
    *
    * @return string
    */
-  public function raw($values): string
+  public function quote($values): string
   {
     $raw    = null;
     $values = is_array($values)
@@ -26,21 +26,51 @@ abstract class AbstractQueryBuilder
     foreach ($values as $val)
     {
       $val  = trim($val, '\'');
-      $raw .= preg_match('/[^\d]/', $val)
+      $raw .= ! is_numeric($val)
         ? '\''.$val.'\','
-        : $val;
+        : $val.',';
     }
 
     return rtrim($raw, ',');
   }
 
-  public function isAssoc(array $arr)
+  /**
+   * @param array $arr
+   *
+   * @return string
+   */
+  public function concat(array $arr): string
   {
-      if (array() === $arr)
-      {
-        return false;
-      }
-      
-      return array_keys($arr) !== range(0, count($arr) - 1);
+    if ( ! self::isAssoc($arr))
+    {
+      return '';
+    }
+
+    $raw = null;
+
+    foreach ($arr as $key => $val)
+    {
+      $val  = trim($val, '\'');
+      $raw .= ! is_numeric($val)
+        ? $key.'=\''.$val.'\','
+        : $key.'='.$val.',';
+    }
+
+    return rtrim($raw, ',');
+  }
+
+  /**
+   * @param array $arr
+   *
+   * @return bool
+   */
+  public function isAssoc(array $arr): bool
+  {
+    if ([] === $arr)
+    {
+      return false;
+    }
+
+    return array_keys($arr) !== range(0, count($arr) - 1);
   }
 }
