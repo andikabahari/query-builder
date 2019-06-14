@@ -17,7 +17,7 @@ print_r($query);
 $select = [];
 $select[] = QueryBuilder::select('column1, column2')->from('table')->finish();
 $select[] = QueryBuilder::select(['column1', 'column2'])->from('table')->finish();
-// print_r($select);
+print_r($select);
 ```
 
 ### INSERT
